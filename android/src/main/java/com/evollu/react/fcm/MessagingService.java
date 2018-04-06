@@ -88,7 +88,14 @@ public class MessagingService extends FirebaseMessagingService {
             try {
                 Bundle bundle = BundleJSONConverter.convertToBundle(new JSONObject(customNotification));
                 FIRLocalMessagingHelper helper = new FIRLocalMessagingHelper(this.getApplication());
-                helper.sendNotification(bundle);
+                if (
+                  bundle.containsKey("rescind") &&
+                  bundle.getString("rescind").equals("true")
+                ) {
+                  helper.removeDeliveredNotification(bundle.getString("notifID"));
+                } else {
+                  helper.sendNotification(bundle);
+                }
             } catch (JSONException e) {
                 e.printStackTrace();
             }
