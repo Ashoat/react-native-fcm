@@ -31,11 +31,8 @@ public class FIRLocalMessagingHelper {
         sharedPreferences = (SharedPreferences) mContext.getSharedPreferences(PREFERENCES_KEY, Context.MODE_PRIVATE);
     }
 
-    public String getMainActivityClassName() {
-        String packageName = mContext.getPackageName();
-        Intent launchIntent = mContext.getPackageManager().getLaunchIntentForPackage(packageName);
-        String className = launchIntent.getComponent().getClassName();
-        return className;
+    public static String getMainActivityClassName() {
+        return "org.squadcal.MainActivity";
     }
 
     private AlarmManager getAlarmManager() {

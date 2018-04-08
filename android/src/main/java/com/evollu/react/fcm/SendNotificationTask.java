@@ -315,10 +315,9 @@ public class SendNotificationTask extends AsyncTask<Void, Void, Void> {
             return null;
         }
     }
-
+    
     protected String getMainActivityClassName() {
-        String packageName = mContext.getPackageName();
-        Intent launchIntent = mContext.getPackageManager().getLaunchIntentForPackage(packageName);
-        return launchIntent != null ? launchIntent.getComponent().getClassName() : null;
+        return "org.squadcal.MainActivity";
     }
+
 }
